@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The Katapult elements used directly in the platform, available for internal usage and external extensions to the platform.",
   "type": "module",
+  "repository": "github:KatapultDevelopment/katapult-pro-elements",
   "exports": {
     ".": "./index.js",
     "./*": "./src/elements/*"
