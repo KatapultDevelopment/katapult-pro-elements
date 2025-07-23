@@ -52,12 +52,6 @@ export const KatapultShoelace = css`
         background: white;
         border-radius: 16px;
     }
-    sl-alert::part(icon) {
-        color: var(--accent-color, red);
-    }
-    sl-alert::part(base) {
-        border-top-color: var(--accent-color, red);
-    }
     sl-checkbox::part(label) {
         font-family: Roboto !important;
     }
