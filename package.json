@@ -1,0 +1,29 @@
+{
+  "name": "katapult-pro-elements",
+  "version": "1.0.0",
+  "description": "The Katapult elements used directly in the platform, available for internal usage and external extensions to the platform.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./src/elements/*"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "@lit-labs/virtualizer": "^2.1.0",
+    "@shoelace-style/shoelace": "^2.20.1",
+    "lit": "^3.3.0"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "serve": "web-dev-server --node-resolve --open"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@web/dev-server": "^0.4.6",
+    "@web/dev-server-rollup": "^0.6.4",
+    "@web/rollup-plugin-html": "^2.3.0",
+    "rollup": "^4.44.0"
+  }
+}
