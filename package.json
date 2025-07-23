@@ -1,5 +1,5 @@
 {
-  "name": "katapult-pro-elements",
+  "name": "@katapult-engineering/elements",
   "version": "1.0.0",
   "description": "The Katapult elements used directly in the platform, available for internal usage and external extensions to the platform.",
   "type": "module",
