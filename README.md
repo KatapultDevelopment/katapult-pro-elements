@@ -9,5 +9,5 @@ A web component library for development, built with [Lit](https://lit.dev/docs/)
   - `slot="suffix"`
   - `slot="help-text"`
 ```js
-import 'katapult-pro-elements/elements/katapult-dropdown.js';
+import 'katapult-pro-elements/katapult-dropdown.js';
 ```
