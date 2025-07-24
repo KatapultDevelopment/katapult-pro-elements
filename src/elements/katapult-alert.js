@@ -21,11 +21,29 @@ export class KatapultAlert extends LitElement {
       sl-alert[variant='primary']::part(base) {
           border-top-color: var(--color-primary-600, var(--sl-color-primary-600));
       }
+      sl-alert[variant='success']::part(icon) {
+        color: var(--color-success-600, var(--sl-color-success-600));
+      }
+      sl-alert[variant='success']::part(base) {
+        border-top-color: var(--color-success-600, var(--sl-color-success-600));
+      }
+      sl-alert[variant='neutral']::part(icon) {
+        color: var(--color-neutral-600, var(--sl-color-neutral-600));
+      }
+      sl-alert[variant='neutral']::part(base) {
+        border-top-color: var(--color-neutral-600, var(--sl-color-neutral-600));
+      }
       sl-alert[variant='warning']::part(icon) {
         color: var(--color-warning-600, var(--sl-color-warning-600));
       }
       sl-alert[variant='warning']::part(base) {
-          border-top-color: var(--color-warning-600, var(--sl-color-warning-600));
+        border-top-color: var(--color-warning-600, var(--sl-color-warning-600));
+      }
+      sl-alert[variant='danger']::part(icon) {
+        color: var(--color-danger-600, var(--sl-color-danger-600));
+      }
+      sl-alert[variant='danger']::part(base) {
+        border-top-color: var(--color-danger-600, var(--sl-color-danger-600));
       }
     `
   render() {
