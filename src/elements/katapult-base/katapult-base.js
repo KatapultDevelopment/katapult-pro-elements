@@ -1,5 +1,8 @@
 // Lit
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
+
+// Polymer
+import '@polymer/font-roboto/roboto.js';
 
 // Shoelace Icons
 import { registerIconLibrary } from '@shoelace-style/shoelace/dist/utilities/icon-library.js';
@@ -8,7 +11,14 @@ import { registerIconLibrary } from '@shoelace-style/shoelace/dist/utilities/ico
 import { KatapultShoelaceColors } from '../../styles/katapult-shoelace-colors';
 
 export class KatapultBase extends LitElement {
-  static styles = KatapultShoelaceColors
+  static styles = [
+    KatapultShoelaceColors,
+    css`
+      :host {
+        font-family: Roboto;
+      }
+    `
+  ]
   render() {
     return html`
       <meta charset="utf-8" />

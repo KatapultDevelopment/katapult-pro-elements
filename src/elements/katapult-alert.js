@@ -16,22 +16,22 @@ export class KatapultAlert extends LitElement {
   static styles = 
     css`
       sl-alert[variant='primary']::part(icon) {
-        color: var(--primary-color, var(--sl-color-primary-600));
+        color: var(--color-primary-600, var(--sl-color-primary-600));
       }
       sl-alert[variant='primary']::part(base) {
-          border-top-color: var(--primary-color, var(--sl-color-primary-600));
+          border-top-color: var(--color-primary-600, var(--sl-color-primary-600));
       }
       sl-alert[variant='warning']::part(icon) {
-        color: var(--warning-color, var(--sl-color-warning-600));
+        color: var(--color-warning-600, var(--sl-color-warning-600));
       }
       sl-alert[variant='warning']::part(base) {
-          border-top-color: var(--warning-color, var(--sl-color-warning-600));
+          border-top-color: var(--color-warning-600, var(--sl-color-warning-600));
       }
     `
   render() {
     return html`
     <katapult-base>
-      <sl-alert open variant=${this.variant}>
+      <sl-alert open variant=${this.setVariant()}>
         ${when(
           this.variant === 'primary',
           () => html`<sl-icon slot="icon" library="material" name="info_round"></sl-icon>`
@@ -67,6 +67,9 @@ export class KatapultAlert extends LitElement {
   }
   invalidVariant() {
     return this.variant !== 'primary' && this.variant !== 'success' && this.variant !== 'neutral' && this.variant !== 'warning' && this.variant !== 'danger';
+  }
+  setVariant() {
+    return (this.variant !== 'success' && this.variant !== 'neutral' && this.variant !== 'warning' && this.variant !== 'danger') ? 'primary' : this.variant;
   }
 }
 window.customElements.define('katapult-alert', KatapultAlert);
