@@ -19,8 +19,10 @@ export class KatapultDialog extends LitElement {
     noHeader: {type: Boolean},
     noCloseOnEsc: {type: Boolean},
     noCloseOnOutsideClick: {type: Boolean},
+    noTitleFill: {type: Boolean},
     titleAlignment: {type: String},
-    titleFill: {type: String}
+    titleFillColor: {type: String},
+    textColor: {type: String}
   }
   static styles = 
     css`
@@ -36,10 +38,10 @@ export class KatapultDialog extends LitElement {
             text-align: left;
         }
         sl-dialog::part(header-actions), sl-dialog::part(close-button) {
-            color: var(--katapult-dialog-text);
+            color: var(--katapult-dialog-text, var(--color-text-600));
         }
         sl-dialog::part(header-actions):hover, sl-dialog::part(close-button):hover {
-            color: var(--katapult-dialog-text);
+            color: var(--katapult-dialog-text, var(--color-text-600));
         }
     /* Property styles */
         sl-dialog[noCloseOnOutsideClick='true']::part(overlay) {
@@ -55,14 +57,14 @@ export class KatapultDialog extends LitElement {
             display: none;
         }
         sl-dialog[filled='true']::part(header) {
-            color: var(--katapult-dialog-text);
+            color: var(--katapult-dialog-text, var(--color-text-600));
             border-radius: 16px 16px 0 0;
-            background: var(--katapult-dialog-header, var(--primary-color, var(--sl-color-gray-500)));
+            background: var(--katapult-dialog-header, var(--color-primary-600, var(--sl-color-gray-600)));
         }
         sl-dialog[filled='true']::part(title) {
-            color: var(--katapult-dialog-text);
+            color: var(--katapult-dialog-text, var(--color-text-600));
             border-radius: 16px 16px 0 0;
-            background: var(--katapult-dialog-header, var(--primary-color, var(--sl-color-gray-500)));
+            background: var(--katapult-dialog-header, var(--color-primary-600, var(--sl-color-gray-600)));
         }
         sl-dialog[alignment='center']::part(header) {
             text-align: center;
@@ -77,7 +79,7 @@ export class KatapultDialog extends LitElement {
   render() {
     return html`
     <katapult-base>
-        <sl-dialog noCloseOnOutsideClick=${this.noCloseOnOutsideClick} noHeader=${this.noHeader} filled=${this.titleFill ? true : false} alignment=${this.titleAlignment} noActions=${this.noActions} noX=${this.noX} .open=${this.open}>
+        <sl-dialog noCloseOnOutsideClick=${this.noCloseOnOutsideClick} noHeader=${this.noHeader} filled=${this.noTitleFill ? false : true} alignment=${this.titleAlignment} noActions=${this.noActions} noX=${this.noX} .open=${this.open}>
             <slot name="label" slot="label">Title</slot>
             <slot name="header-actions" slot="header-actions"></slot>
             <slot></slot>
@@ -89,30 +91,47 @@ export class KatapultDialog extends LitElement {
   constructor() {
     super();
 
+    // Set variables
     this.open = false;
     this.noX = false;
     this.noActions = false;
     this.noHeader = false;
+    this.noTitleFill = false;
     this.titleAlignment = 'center';
-    this.titleFill = 'var(--color-primary-600, var(--sl-color-primary-600))';
-    this.style.setProperty('--katapult-dialog-header', this.titleFill);
+    this.titleFillColor = '';
+    this.textColor = this.noTitleFill ? 'black' : 'white';
+
+    // Set styles
+    this.style.setProperty('--katapult-dialog-text', this.textColor);
   }
   attributeChangedCallback(name, oldVal, newVal) {
     switch(name) {
         case 'open':
             if(newVal === '' || newVal === true) this.open = true;
             break;
-        case 'titlefill':
-            this.style.setProperty('--katapult-dialog-header', newVal);
-
-            // Determine text, x, and icon colors to have good contrast
-            if(newVal) {
-                const rgbaVal = rgba(newVal).reduce((finalVal, val, index) => index !== 3 ? finalVal + ' ' + val : finalVal + ' / ' + (val * 100) + '%');
-                const grayVal = convert.rgb.gray(rgbaVal);
-                if(grayVal <= 50) this.style.setProperty('--katapult-dialog-text', 'black');
-                else this.style.setProperty('--katapult-dialog-text', 'white');
-            }
+        case 'titlefillcolor':
+            this._determineTextColor(newVal);
             break;
+        case 'textcolor':
+            if(newVal) this.style.setProperty('--katapult-dialog-text', newVal);
+            else if(this.noTitleFill) this.style.setProperty('--katapult-dialog-text', 'black');
+            else this.style.setProperty('--katapult-dialog-text', 'white');
+            break;
+    }
+  }
+  _determineTextColor(newVal) {
+    if(newVal) {
+        // Determine text, x, and icon colors to have good contrast
+        const rgbaVal = rgba(newVal).reduce((finalVal, val, index) => index !== 3 ? finalVal + ' ' + val : finalVal + ' / ' + (val * 100) + '%');
+        const grayVal = convert.rgb.gray(rgbaVal);
+
+        if(grayVal <= 50) this.style.setProperty('--katapult-dialog-text', 'black');
+        else this.style.setProperty('--katapult-dialog-text', 'white');
+        this.style.setProperty('--katapult-dialog-header', newVal);
+    } else {
+        // Wipe property values if empty
+        this.style.removeProperty('--katapult-dialog-text');
+        this.style.removeProperty('--katapult-dialog-header');
     }
   }
 }
