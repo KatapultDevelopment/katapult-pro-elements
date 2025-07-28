@@ -9,10 +9,14 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 // Basic element data wrapper
 import './katapult-base/katapult-base.js';
 
+/**
+ * @property {Array} data
+ */
+
 export class KatapultButtonGroup extends LitElement {
   static properties = {
     // Data array includes button labels, actions, and selected status
-    data: {type: Array}
+    data: {type: Array, reflect: true}
   }
   static styles = 
     css`
@@ -21,7 +25,7 @@ export class KatapultButtonGroup extends LitElement {
             color: var(--color-neutral-700, var(--sl-color-neutral-700));
         }
         sl-button::part(base) {
-            border-color: var(--color-neutral-300, var(--sl-color-neutral-300));
+            border-color: var(--color-neutral-200, var(--sl-color-neutral-200));
         }
         sl-button[selected='true']::part(label),
         sl-button::part(label):hover {
@@ -39,8 +43,8 @@ export class KatapultButtonGroup extends LitElement {
         <sl-button-group>
             ${map(
                 this.data,
-                (button) => html`
-                    <sl-button pill selected=${button.selected ? true : false} size="small" @click=${button.action || this.informNoFunction}>${button.label || ''}</sl-button>
+                (button, index) => html`
+                    <sl-button pill selected=${button.selected ? true : false} size="small" @click=${() => this.setSelected(button, index)}>${button.label || ''}</sl-button>
                 `
             )}
         </sl-button-group>
@@ -52,8 +56,15 @@ export class KatapultButtonGroup extends LitElement {
 
     this.data = [];
   }
-  informNoFunction() {
-    console.log('No function exists for this button');
+  setSelected(button, index) {
+    // Set selected status
+    const selectedStatus = this.data[index].selected;
+    this.data.forEach(button => button.selected = false);
+    this.data[index].selected = selectedStatus ? false : true;
+    this.requestUpdate();
+
+    // Call the button's function if it exists
+    if(button.action) button.action();
   }
 }
 window.customElements.define('katapult-button-group', KatapultButtonGroup);

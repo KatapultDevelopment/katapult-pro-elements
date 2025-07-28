@@ -20,7 +20,7 @@ export class KatapultButton extends LitElement {
         }
         sl-button::part(base) {
             border-radius: 16px;
-            border-color: var(--color-neutral-300, var(--sl-color-neutral-300));
+            border-color: var(--color-neutral-200, var(--sl-color-neutral-200));
         }
     // Default Buttons
         sl-button[variant='default']::part(base) {
