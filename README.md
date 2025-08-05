@@ -9,25 +9,25 @@ A web component library for both internal and external development, built with [
   - `slot="suffix"`
   - `slot="help-text"`
 - Properties:
-  - `open`: Boolean
-  - `placement`: String
-  - `stayOpenOnSelect`, attribute name `stay-open-on-select`: Boolean
-  - `containingElement`: Object
-  - `hoist`: Boolean
-  - `autocomplete`: String
-  - `size`: String
-  - `filled`: Boolean
-  - `pill`: Boolean
-  - `label`: String
-  - `helpText`: String
-  - `clearable`: Boolean
-  - `placeholder`: String
-  - `disabled`: Boolean
-  - `items`: Array
-  - `value`: String
-  - `renderItem`: Function
-  - `autoFilter`, attribute name `auto-filter`: Boolean
-  - `lookLikePaperElement`, attribute name `look-like-paper-element`: Boolean
+  - Boolean `stayOpenOnSelect`, attribute name `stay-open-on-select`
+  - Boolean `autoFilter`, attribute name `auto-filter`
+  - Boolean `lookLikePaperElement`, attribute name `look-like-paper-element`
+  - Boolean `open`
+  - Boolean `hoist`
+  - Boolean `filled`
+  - Boolean `pill`
+  - Boolean `clearable`
+  - Boolean `disabled`
+  - String `placement`
+  - String `autocomplete`
+  - String `size`
+  - String `label`
+  - String `helpText`
+  - String `placeholder`
+  - String `value`
+  - Array `items`
+  - Object `containingElement`
+  - Function `renderItem`
 ```js
 import '@katapult-engineering/elements/katapult-searchable-dropdown.js';
 ```
