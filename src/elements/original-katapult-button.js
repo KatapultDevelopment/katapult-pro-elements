@@ -14,7 +14,7 @@ import './katapult-collapse.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import { TemplateInstanceBase } from '@polymer/polymer/lib/utils/templatize.js';
 import { uuidv4 } from '../../modules/browserUUIDv4.js';
-import { Luma } from '../../modules/Luma.js';
+import { Luma } from '../modules/Luma.js';
 
 export class KatapultButton extends LitElement {
   static ParseCssCustomProperty(prop) {

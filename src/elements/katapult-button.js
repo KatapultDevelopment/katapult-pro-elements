@@ -4,117 +4,69 @@ import { LitElement, html, css } from 'lit';
 // Shoelace Components
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 
+// Color Translator
+import { ColorTranslator } from 'colortranslator';
+
 // Basic element data wrapper
 import './katapult-base/katapult-base.js';
 
+// Modules
+import { Luma } from '../modules/Luma.js';
+
 export class KatapultButton extends LitElement {
   static properties = {
-    variant: {type: String}
+    // Styling
+    variant: {type: String},
+    color: { type: String },
+    backgroundColor: { type: String },
+    borderColor: { type: String },
+    textColor: { type: String },
+    noBackground: { type: Boolean },
+    noBorder: { type: Boolean },
+    // Disabled
+    disabled: { type: Boolean, reflect: true },
+    disabledOnError: { type: Boolean },
+    disabledOnSuccess: { type: Boolean },
+    loading: { type: Boolean, reflect: true },
+    // Errors
+    noError: { type: Boolean },
+    // Success
+    successMessage: { type: String, state: true }
   }
+
+// All custom color properties are in the form R, G, B (i.e. 255, 255, 255) in order to allow rgba to be used on it
+// The variable isn't a color unless the var is wrapped in rgb or rgba
   static styles = 
     css`
+        /* Set variable defaults */
+        :host {
+            --katapult-button-background: 255, 255, 255;
+            --katapult-button-border: 235, 236, 235;
+            --katapult-button-text: 62, 63, 62;
+        }
         sl-button::part(label) {
             font-size: 16px;
             font-weight: normal;
-            color: var(--color-neutral-500, var(--sl-color-neutral-500));
         }
         sl-button::part(base) {
             border-radius: 16px;
-            border-color: var(--color-neutral-200, var(--sl-color-neutral-200));
+            color: rgba(var(--katapult-button-text));
         }
-    // Default Buttons
+    /* Default Buttons */
         sl-button[variant='default']::part(base) {
-            background: white;
+            background: rgba(var(--katapult-button-background));
+            border-color: rgba(var(--katapult-button-border));
         }
         sl-button[variant='default']::part(base):hover {
-            border-color: var(--color-default-500, var(--sl-color-neutral-500));
-            color: var(--color-default-500, var(--sl-color-neutral-500));
-            background: var(--color-default-50, var(--sl-color-neutral-50));
-        }
-        sl-button[variant='default'] {
-            color: var(--color-default-400, var(--sl-color-neutral-400));
-        }
-        sl-button[variant='default']:hover {
-            color: var(--color-default-500, var(--sl-color-neutral-500));
-        }
-        sl-button[variant='default']::part(label) {
-            color: var(--color-default-600, var(--sl-color-neutral-600));
-        }
-    // Primary Buttons
-        sl-button[variant='primary'] {
-            background-color: var(--color-primary-600, --sl-color-primary-600);
-        }
-        sl-button[variant='primary']::part(label) {
-            color: white;
-        }
-        sl-button[variant='primary']::part(base) {
-            background-color: var(--color-primary-600, var(--sl-color-primary-600));
-        }
-        sl-button[variant='primary']::part(base):hover {
-            background-color: var(--color-primary-700, var(--sl-color-primary-700));
-            border-color: var(--color-primary-700, var(--sl-color-primary-700));
-        }
-    // Success Buttons
-        sl-button[variant='success'] {
-            background-color: var(--color-success-600, var(--sl-color-success-600));
-        }
-        sl-button[variant='success']::part(label) {
-            color: white;
-        }
-        sl-button[variant='success']::part(base) {
-            background-color: var(--color-success-600, var(--sl-color-success-600));
-        }
-        sl-button[variant='success']::part(base):hover {
-            background-color: var(--color-success-700, var(--sl-color-success-700));
-            border-color: var(--color-success-700, var(--sl-color-success-700));
-        }
-    // Neutral Buttons
-        sl-button[variant='neutral'] {
-            background-color: var(--color-neutral-600, var(--sl-color-neutral-600));
-        }
-        sl-button[variant='neutral']::part(label) {
-            color: white;
-        }
-        sl-button[variant='neutral']::part(base) {
-            background-color: var(--color-neutral-600, var(--sl-color-neutral-600));
-        }
-        sl-button[variant='neutral']::part(base):hover {
-            background-color: var(--color-neutral-700, var(--sl-color-neutral-700));
-            border-color: var(--color-neutral-700, var(--sl-color-neutral-700));
-        }
-    // Warning Buttons
-        sl-button[variant='warning'] {
-            background-color: var(--color-warning-600, var(--sl-color-warning-600));
-        }
-        sl-button[variant='warning']::part(label) {
-            color: white;
-        }
-        sl-button[variant='warning']::part(base) {
-            background-color: var(--color-warning-600, var(--sl-color-warning-600));
-        }
-        sl-button[variant='warning']::part(base):hover {
-            background-color: var(--color-warning-700, var(--sl-color-warning-700));
-            border-color: var(--color-warning-700, var(--sl-color-warning-700));
-        }
-    // Danger Buttons
-        sl-button[variant='danger'] {
-            background-color: var(--color-danger-600, var(--sl-color-danger-600));
-        }
-        sl-button[variant='danger']::part(label) {
-            color: white;
-        }
-        sl-button[variant='danger']::part(base) {
-            background-color: var(--color-danger-600, var(--sl-color-danger-600));
-        }
-        sl-button[variant='danger']::part(base):hover {
-            background-color: var(--color-danger-500, var(--sl-color-danger-500));
-            border-color: var(--color-danger-500, var(--sl-color-danger-500));
+            border-color: rgba(var(--katapult-button-border), 0.7);
+            color: rgba(var(--katapult-button-text));
+            background: rgba(var(--katapult-button-background), 0.7);
         }
     `
   render() {
     return html`
     <katapult-base>
-        <sl-button variant=${this.setVariant()}>
+        <sl-button variant=${this.variant}>
             <slot></slot>
         </sl-button>
     </katapult-base>
@@ -123,8 +75,76 @@ export class KatapultButton extends LitElement {
   constructor() {
     super();
   }
-  setVariant() {
-    return (this.variant !== 'primary' && this.variant !== 'success' && this.variant !== 'neutral' && this.variant !== 'warning' && this.variant !== 'danger') ? 'default' : this.variant;
+  attributeChangedCallback(name, oldVal, newVal) {
+    // Format the color input if the attribute is a color
+    const attributesToFormatColor = ['color', 'backgroundcolor', 'bordercolor', 'textcolor'];
+    const [ formattedColor, rgbVals ] = attributesToFormatColor.includes(name) ? this._formatColor(newVal) : [ undefined, undefined ];
+    switch(name) {
+        // Styles
+        case 'variant':
+            if(newVal !== 'primary' && newVal !== 'success' && newVal !== 'neutral' && newVal !== 'warning' && newVal !== 'danger') {
+                this.variant = 'default';
+            } else {
+                this.variant = newVal;
+                this.style.setProperty('--katapult-button-text', '255, 255, 255');
+            }
+            break;
+        case 'color':
+            if(!newVal) break;
+
+            // Set all enabled colors to indicated color, calc text color
+            // No nullish check for color - maintains error that the format is incorrect
+            if(!this.noBackground) this.style.setProperty('--katapult-button-background', formattedColor);
+            if(!this.noBorder) this.style.setProperty('--katapult-button-border', formattedColor);
+            // Set text to black if no background, else calc based on background
+            if(this.noBackground) this.style.setProperty('--katapult-button-text', '0, 0, 0');
+            else this._calcTextColor(rgbVals);
+            break;
+        case 'backgroundcolor':
+            if(!newVal) break;
+
+            if(!this.noBackground) this.style.setProperty('--katapult-button-background', formattedColor);
+            break;
+        case 'bordercolor':
+            if(!newVal) break;
+
+            if(!this.noBorder) this.style.setProperty('--katapult-button-border', formattedColor);
+            break;
+        case 'textcolor':
+            if(!newVal) break;
+
+            this.style.setProperty('--katapult-button-text', formattedColor);
+            break;
+        case 'nobackground':
+            if(newVal || newVal?.length === 0) {
+                this.style.setProperty('--katapult-button-background', '255, 255, 255');
+                this.style.setProperty('--katapult-button-text', '0, 0, 0');
+            }
+            break;
+        case 'noborder':
+            if(newVal || newVal?.length === 0) this.style.setProperty('--katapult-button-border', '255, 255, 255');
+            break;
+    }
+  }
+
+//   STYLE FUNCTIONS  //
+  _formatColor(color) {
+    const customProperty = this._customProperty(color);
+    // GET THIS TO ACTUALLY WORK - NOT ABLE TO ACCESS CUSTOM PROPERTIES AT THIS POINT?
+    // WE NEED CODE THAT CONSIDERS ALPHA CHANNELS HERE - MAYBE GRAB THE BACKGROUND COLOR OF THE BOUNDARY ELEMENT TO CONVERT RGBA TO RGB?
+    const userColor = customProperty ? this.style.getPropertyValue(customProperty).trim() : color;
+    const colorData = new ColorTranslator(userColor).rgb;
+    const rgbColor = colorData.R + ', ' + colorData.G + ', ' + colorData.B;
+    return [rgbColor, colorData];
+  }
+  _calcTextColor(color) {
+    // WE NEED CODE THAT CONSIDERS ALPHA CHANNELS HERE - MAYBE GRAB THE BACKGROUND COLOR OF THE BOUNDARY ELEMENT TO CONVERT RGBA TO RGB?
+    const colorLuma = Luma(color.R, color.G, color.B);
+    if(colorLuma < 66.6) this.style.setProperty('--katapult-button-text', '255, 255, 255');
+    else this.style.setProperty('--katapult-button-text', '0, 0, 0');
+  }
+  _customProperty(prop) {
+    return prop.match(/^(var\()?(?<prop>--[^\)]*)\)?$/)?.groups.prop;
   }
 }
 window.customElements.define('katapult-button', KatapultButton);
