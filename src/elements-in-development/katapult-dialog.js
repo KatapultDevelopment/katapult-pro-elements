@@ -5,11 +5,11 @@ import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 
 // Color Converter
-import convert from 'color-convert';
-import rgba from 'color-rgba';
+import { ColorTranslator } from 'colortranslator';
+import { Luma } from '../modules/Luma.js';
 
 // Basic element data wrapper
-import './katapult-base/katapult-base.js';
+import '../base-element/katapult-base.js';
 
 export class KatapultDialog extends LitElement {
   static properties = {
@@ -121,12 +121,10 @@ export class KatapultDialog extends LitElement {
   }
   _determineTextColor(newVal) {
     if(newVal) {
-        // Determine text, x, and icon colors to have good contrast
-        const rgbaVal = rgba(newVal).reduce((finalVal, val, index) => index !== 3 ? finalVal + ' ' + val : finalVal + ' / ' + (val * 100) + '%');
-        const grayVal = convert.rgb.gray(rgbaVal);
-
-        if(grayVal <= 50) this.style.setProperty('--katapult-dialog-text', 'black');
-        else this.style.setProperty('--katapult-dialog-text', 'white');
+        const color = new ColorTranslator(newVal).rgb;
+        const colorLuma = Luma(color.R, color.G, color.B);
+        if(colorLuma < 66.6) this.style.setProperty('--katapult-dialog-text', 'white');
+        else this.style.setProperty('--katapult-dialog-text', 'black');
         this.style.setProperty('--katapult-dialog-header', newVal);
     } else {
         // Wipe property values if empty

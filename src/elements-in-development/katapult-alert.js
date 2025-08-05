@@ -7,7 +7,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';
 
 // Basic element data wrapper
-import './katapult-base/katapult-base.js';
+import '../base-element/katapult-base.js';
 
 export class KatapultAlert extends LitElement {
   static properties = {

@@ -13,8 +13,6 @@
     "@lit-labs/virtualizer": "^2.1.0",
     "@polymer/font-roboto": "^3.0.2",
     "@shoelace-style/shoelace": "^2.20.1",
-    "color-convert": "^3.1.0",
-    "color-rgba": "^3.0.0",
     "colortranslator": "^5.0.0",
     "lit": "^3.3.0"
   },

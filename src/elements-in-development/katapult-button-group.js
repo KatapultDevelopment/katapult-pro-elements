@@ -7,7 +7,7 @@ import '@shoelace-style/shoelace/dist/components/button-group/button-group.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 // Basic element data wrapper
-import './katapult-base/katapult-base.js';
+import '../base-element/katapult-base.js';
 
 /**
  * @property {Array} data

@@ -8,7 +8,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import { ColorTranslator } from 'colortranslator';
 
 // Basic element data wrapper
-import './katapult-base/katapult-base.js';
+import '../base-element/katapult-base.js';
 
 // Modules
 import { Luma } from '../modules/Luma.js';

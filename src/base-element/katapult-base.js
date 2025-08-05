@@ -8,7 +8,7 @@ import '@polymer/font-roboto/roboto.js';
 import { registerIconLibrary } from '@shoelace-style/shoelace/dist/utilities/icon-library.js';
 
 // Styles
-import { KatapultShoelaceColors } from '../../styles/katapult-shoelace-colors';
+import { KatapultShoelaceColors } from '../styles/katapult-shoelace-colors';
 
 export class KatapultBase extends LitElement {
   static styles = [
