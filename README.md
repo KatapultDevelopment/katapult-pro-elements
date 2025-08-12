@@ -17,9 +17,9 @@ A web component library for both internal and external development, built with [
 
 | Name | Description | Type |
 | -------- | ------- | ------- |
-| <ul style="list-style-type: none; padding: 0;"><li>`stayOpenOnSelect`</li><li style="font-size: 12px;">`stay-open-on-select`</li></ul> | Keeps the dropdown open when an item is selected from the list | `Boolean` |
-| <ul style="list-style-type: none; padding: 0;"><li>`autoFilter`</li><li style="font-size: 12px;">`auto-filter`</li></ul> | Filters down the listed elements based on what the user types in the search section | `Boolean` |
-| <ul style="list-style-type: none; padding: 0;"><li>`lookLikePaperElement`</li><li style="font-size: 12px;">`look-like-paper-element`</li></ul> | Formats the dropdown to look like the Polymer `paper-dropdown-menu` | `Boolean` |
+| `stayOpenOnSelect`<br/><span style="font-size: 12px;">`stay-open-on-select`</span> | Keeps the dropdown open when an item is selected from the list | `Boolean` |
+| `autoFilter`<br/>`auto-filter` | Filters down the listed elements based on what the user types in the search section | `Boolean` |
+| `lookLikePaperElement`<br/>`look-like-paper-element` | Formats the dropdown to look like the Polymer `paper-dropdown-menu` | `Boolean` |
 | `open` | Indicates if the dropdown section is opened (can be included in the element to start with it open) | `Boolean` |
 | `hoist` | Allows the dropdown part of the element to go outside of the containing element | `Boolean` |
 | `filled` | Fills the background with a grey color. The color is stored in `var(--sl-input-filled-background-color)` and can be changed by overwriting this css variable. | `Boolean` |
