@@ -17,7 +17,7 @@ A web component library for both internal and external development, built with [
 
 | Name | Description | Type |
 | -------- | ------- | ------- |
-| `stayOpenOnSelect`<br/><span style="font-size: 12px;">`stay-open-on-select`</span> | Keeps the dropdown open when an item is selected from the list | `Boolean` |
+| `stayOpenOnSelect`<br/>`stay-open-on-select` | Keeps the dropdown open when an item is selected from the list | `Boolean` |
 | `autoFilter`<br/>`auto-filter` | Filters down the listed elements based on what the user types in the search section | `Boolean` |
 | `lookLikePaperElement`<br/>`look-like-paper-element` | Formats the dropdown to look like the Polymer `paper-dropdown-menu` | `Boolean` |
 | `open` | Indicates if the dropdown section is opened (can be included in the element to start with it open) | `Boolean` |
