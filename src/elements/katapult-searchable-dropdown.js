@@ -50,9 +50,11 @@ function assignSlotIfContent(event) {
   const slot = eventCurrentTarget;
 
   const { name = '' } = slot;
-  const assignedElements = slot.assignedElements({ flatten: true });
-  const slotHasElements = assignedElements.length > 0;
-  slot.slot = slotHasElements ? name : '';
+  const assignedNodes = slot.assignedNodes({ flatten: true });
+  // Text or element nodes
+  const filteredNodes = assignedNodes.filter(node => node.nodeType === 1 || node.nodeType === 3);
+  const slotHasContent = filteredNodes.length > 0;
+  slot.slot = slotHasContent ? name : '';
 }
 
 class KatapultSearchableDropdown extends LitElement {
