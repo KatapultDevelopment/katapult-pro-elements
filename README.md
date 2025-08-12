@@ -2,7 +2,7 @@
 A web component library for both internal and external development, built with [Lit](https://lit.dev/docs/) and [Shoelace](https://shoelace.style/).
 
 ## `<katapult-searchable-dropdown>`
-- Dropdown component for selecting from a list of items. This element supports filtering and can be navigated using keyboard shortcuts.
+Dropdown component for selecting from a list of items. This element supports filtering and can be navigated using keyboard shortcuts.
 
 ### Slots
 
