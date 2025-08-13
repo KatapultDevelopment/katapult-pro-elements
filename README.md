@@ -37,6 +37,21 @@ Dropdown component for selecting from a list of items. This element supports fil
 | `containingElement` | The element that determines where a dropdown can appear. The formatting follows the normal DOM by default. This property is used for edge cases or for clipping a dropdown that doesn't use `hoist` | `Object` |
 | `renderItem` | <ul><li>Allows customization for how each item is rendered. This property expects a function with parameters indicating the current item, its index, and an array of the items (after being filtered if autoFilter is enabled), as well HTML in the return.</li><pre><code>(item, index, arr) => html\`<sl-menu-item value=${item.value} \?disabled=\${item.disabled}>\${item.label}</sl-menu-item>\`;</code></pre></ul> | `Function` |
 
+### Events
+| Name | Description | Event Detail |
+| -------- | ------- | ------- |
+| `change` | Emitted when the dropdown is cleared or a new item is selected | |
+| `value-changed` | Emitted when the value attribute of the dropdown changes. | |
+| `user-input` | Emitted when the user changes the search string in the input field. | `event.detail.value` - the current search string |
+| `select` | Emitted when a new item is selected from the dropdown. | `event.detail` - the selected item<br/>`event.cancelable` - true |
+
+### Methods
+| Name | Description |
+| -------- | ------- |
+| `show()` | Shows the dropdown menu. |
+| `hide()` | Hides the dropdown menu. |
+| `clear()` | Clears the current value of the dropdown and clears any user input. |
+
 ### Import Statement
 ```js
 import '@katapult-engineering/elements/katapult-searchable-dropdown.js';
