@@ -3,6 +3,8 @@ A web component library for both internal and external development, built with [
 
 ## `<katapult-searchable-dropdown>`
 Dropdown component for selecting from a list of items. This element supports filtering and can be navigated using keyboard shortcuts.
+- Up and Down arrow scrolls the dropdown
+- Enter selects the currently highlighted item from the dropdown
 
 ### Slots
 
