@@ -6,7 +6,7 @@
   "repository": "github:KatapultDevelopment/katapult-pro-elements",
   "exports": {
     ".": "./index.js",
-    "./*": "./src/elements/*"
+    "./*": "./public/elements/*"
   },
   "main": "./index.js",
   "dependencies": {

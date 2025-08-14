@@ -1,1 +1,1 @@
-export * from '../katapult-pro-elements/src/elements/';
+export * from '../katapult-pro-elements/public/elements/';

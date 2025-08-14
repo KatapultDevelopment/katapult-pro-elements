@@ -13,15 +13,15 @@ import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
 // Styles
-import { KatapultShoelace } from '../styles/katapult-shoelace.js';
-import { KatapultScrollbars } from '../styles/katapult-scrollbars.js';
+import { KatapultShoelace } from '../../src/styles/katapult-shoelace.js';
+import { KatapultScrollbars } from '../../src/styles/katapult-scrollbars.js';
 
 // Modules
-import { ShouldUpdate } from '../modules/ShouldUpdate.js';
-import { Clamp } from '../modules/Clamp.js';
+import { ShouldUpdate } from '../../src/modules/ShouldUpdate.js';
+import { Clamp } from '../../src/modules/Clamp.js';
 
 // Base wrapper element
-import '../base-element/katapult-base.js'
+import '../../src/base-element/katapult-base.js'
 
 /** @import { Ref } from 'lit/directives/ref.js' */
 
